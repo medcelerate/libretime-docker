@@ -10,8 +10,8 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
-      - POSTGRES_USER=libretime
-      - POSTGRES_PASSWORD=libretime
+      - POSTGRES_USER=airtime
+      - POSTGRES_PASSWORD=airtime
     volumes:
       - ${USERDIR}/docker/libretime/airtime:/etc/airtime
       - ${USERDIR}/docker/libretime/stor:/srv/airtime/stor
