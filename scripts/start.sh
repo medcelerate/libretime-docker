@@ -9,11 +9,11 @@ pg_ctlcluster 10 main restart
 
 echo "Setting Up postgres"
 cmd="--command CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '"$POSTGRES_PASSWORD"';"
-su postgres -c $cmd
+su - postgres -c $cmd
 cmd="createdb -O $POSTGRES_USER airtime"
-su postgres -c $cmd
+su - postgres -c $cmd
 cmd="psql --command GRANT CONNECT ON airtime to $POSTGRES_USER"
-su postgres -c $cmd
+su - postgres -c $cmd
 exit
 
 #Setup RabbitMQ
