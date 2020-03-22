@@ -8,11 +8,11 @@ echo "Restarting postgres DB"
 pg_ctlcluster 10 main restart
 
 echo "Setting Up postgres"
-cmd="--command CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '"$POSTGRES_PASSWORD"';"
+cmd="'psql --command CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '"$POSTGRES_PASSWORD"';'"
 su -c $cmd postgres
-cmd="createdb -O $POSTGRES_USER airtime"
+cmd="'createdb -O $POSTGRES_USER airtime'"
 su -c $cmd postgres
-cmd="psql --command GRANT CONNECT ON airtime to $POSTGRES_USER"
+cmd="'psql --command GRANT CONNECT ON airtime to $POSTGRES_USER'"
 su -c $cmd postgres
 exit
 
