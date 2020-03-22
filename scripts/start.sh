@@ -9,7 +9,9 @@ pg_ctlcluster 10 main restart
 
 echo "Setting Up postgres"
 sudo -u postgres psql --command "CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '$POSTGRES_PASSWORD';"
+echo "Creating db"
 sudo -u postgres createdb -O $POSTGRES_USER airtime
+echo "Creating Access rules"
 sudo -u postgres psql --command "GRANT CONNECT ON airtime to $POSTGRES_USER;"
 
 #Setup RabbitMQ
