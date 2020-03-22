@@ -34,6 +34,8 @@ COPY pkgs_list.apt /pkgs_list.apt
 
 RUN apt-get install --no-install-recommends -y $(cat /pkgs_list.apt)
 
+RUN apt-get install -y sudo
+
 COPY scripts/libre_start.sh /libre_start.sh
 
 COPY scripts/preparation.sh /preparation.sh
