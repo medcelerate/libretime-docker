@@ -8,17 +8,10 @@ echo "Restarting postgres DB"
 pg_ctlcluster 10 main restart
 
 echo "Setting Up postgres"
-sudo -u postgres psql --command "CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '$POSTGRES_PASSWORD';"
+sudo -u postgres psql --command "CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '$POSTGRES_PASSWORD' CREATEDB;"
 echo "Creating db"
 sudo -u postgres createdb -O $POSTGRES_USER airtime
 echo "Creating Access rules"
-sudo -u postgres psql --command "GRANT CONNECT ON airtime to $POSTGRES_USER;"
-
-#Setup RabbitMQ
-echo "Setting Up Rabbit"
-rabbitmqctl add_user airtime airtime
-rabbitmqctl set_user_tags airtime administrator
-rabbitmqctl set_permissions -p /airtime airtime ".*" ".*" ".*"
 
 if [ -e /liquidsoap ]
 then
@@ -29,6 +22,13 @@ fi
 
 echo "Restarting libretime services"
 /libre_start.sh
+
+#Setup RabbitMQ
+echo "Setting Up Rabbit"
+rabbitmqctl add_user airtime airtime
+rabbitmqctl set_user_tags airtime administrator
+rabbitmqctl set_permissions -p /airtime airtime ".*" ".*" ".*"
+
 
 echo "Starting libretime container..."
 
