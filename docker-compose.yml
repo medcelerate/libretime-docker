@@ -1,4 +1,4 @@
-version: "3.6"
+version: "3.3"
 
 # make sure to have a .env file in the same directory
 
@@ -20,8 +20,8 @@ services:
       - ${USERDIR}/docker/libretime/liquidsoap:/usr/local/lib/python2.7/dist-packages/airtime_playout-1.0-py2.7.egg/liquidsoap/
       - /var/music:/var/music
     ports:
-      - 80:80
-      - 8000:8000
+      - 15280:80
+      - 15282:8000
     restart: always
 
 volumes:
