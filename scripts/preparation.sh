@@ -34,8 +34,7 @@ cd / && rm -rf /src
 a2enmod rewrite
 systemctl restart apache2
 
-### POSTGRES POST CONFIG
+## Setup postgres config
 echo "** Creating config files"
-echo "localhost:5432:artime:airtime:airtime" > /root/.pgpass
+echo "localhost:5432:libretime:$POSTGRES_USER:$POSTGRES_PASSWORD" > /root/.pgpass
 chmod 600 /root/.pgpass
-

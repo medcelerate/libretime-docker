@@ -7,6 +7,19 @@ chown -R postgres:postgres /var/lib/postgresql
 echo "Restarting postgres DB"
 pg_ctlcluster 10 main restart
 
+echo "Setting Up postgres"
+su - postres
+psql --command "CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '"$POSTGRES_PASSWORD"';"
+createdb -O $POSTGRES_USER airtime
+psql --command "GRANT CONNECT ON airtime to $POSTGRES_USER"
+exit
+
+#Setup RabbitMQ
+echo "Setting Up Rabbit"
+rabbitmqctl add_user airtime airtime
+rabbitmqctl set_user_tags airtime administrator
+rabbitmqctl set_permissions -p /airtime airtime ".*" ".*" ".*"
+
 if [ -e /liquidsoap ]
 then
   echo "Setting up liquidsoap dir"

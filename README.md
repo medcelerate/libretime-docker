@@ -10,7 +10,7 @@ This project is only here to simplify the installation of libretime in a
 Simply run `docker pull odclive/libretime-docker:latest` to download the image.
 
 To run a standalone __none persisting__ container (for testing purposes) you can 
-use `docker run -p 80:80 -p 8000:8000 -p 8001:8001 --name=libretime odclive/libretime-docker:latest`.
+use `docker run -e POSTGRES_PASSWORD="somepassword" -p 80:80 -p 8000:8000 -p 8001:8001 --name=libretime odclive/libretime-docker:latest`.
 
 To run a __persisting__ container, it is __strongly__ recommended you use a
 `docker-compose.yml` file coupled with a `.env` file (you can find an example

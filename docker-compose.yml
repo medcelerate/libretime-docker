@@ -4,18 +4,21 @@ version: "3.6"
 
 services:
   libretime:
-    image: odclive/libretime-docker:latest
+    image: medcelerate/libretime-docker:latest
     container_name: libretime
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
+      - POSTGRES_USER=libretime
+      - POSTGRES_PASSWORD=libretime
     volumes:
       - ${USERDIR}/docker/libretime/airtime:/etc/airtime
       - ${USERDIR}/docker/libretime/stor:/srv/airtime/stor
       - ${USERDIR}/docker/libretime/watch:/srv/airtime/watch
       - libretime_postgres:/var/lib/postgresql/10/main
       - ${USERDIR}/docker/libretime/liquidsoap:/usr/local/lib/python2.7/dist-packages/airtime_playout-1.0-py2.7.egg/liquidsoap/
+      - /var/music:/var/music
     ports:
       - 80:80
       - 8000:8000

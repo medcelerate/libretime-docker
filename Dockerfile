@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV XDG_RUNTIME_DIR 0
 ENV LIBRE_V 3.0.0-alpha.8
 
+ARG POSTGRES_USER=libretime
+ARG POSTGRES_PASSWORD=libretime
+
 COPY pkgs_list.apt /pkgs_list.apt
 
 RUN apt-get update && apt-get install --no-install-recommends -y apt-utils && \
